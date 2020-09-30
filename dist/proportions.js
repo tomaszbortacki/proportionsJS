@@ -50,8 +50,6 @@ if (PROPORTIONS.length > 0) {
     for (let el of proportionTypes) {
       I_TYPES.push(new Proportions(el));
     }
-
-    console.log(I_TYPES);
   };
 
   window.addEventListener("load", initProportions);
