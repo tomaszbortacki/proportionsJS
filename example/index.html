@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>proportionsJS</title>
     <style>
+      :root {
+        --ease: 0.3s ease;
+      }
       * {
         margin: 0;
         padding: 0;
@@ -15,20 +18,38 @@
       }
 
       .columns {
-        column-count: 3;
+        column-count: 6;
         column-gap: 1rem;
       }
 
       figure {
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.02)) brightness(0.7);
         width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: filter var(--ease), transform var(--ease),
+          border-color var(--ease);
+        will-change: filter, transform, border-color;
+        cursor: pointer;
+        border: 5px solid transparent;
       }
 
-      figure:not(:first-child) {
+      figure:hover {
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.05)) brightness(1);
+        transform: scale(1.05);
+        border-color: #f39c12;
+      }
+
+      figure:active {
+        transform: scale(0.98);
+        transition-duration: 0.03s;
+      }
+
+      figure:not(:first-of-type) {
         margin-top: 1rem;
       }
 
       img {
-        border-radius: 20px;
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -36,21 +57,21 @@
     </style>
   </head>
   <body class="columns">
-    <figure data-proportions="figure,16-9">
-      <img src="./images/mountains.jpg" />
-    </figure>
-    <figure data-proportions="figure,12-9">
-      <img src="./images/mountains.jpg" />
-    </figure>
-    <figure data-proportions="figure,4-3">
-      <img src="./images/mountains.jpg" />
-    </figure>
-    <figure data-proportions="figure,6-4">
-      <img src="./images/mountains.jpg" />
-    </figure>
-    <figure data-proportions="figure,4-5">
-      <img src="./images/mountains.jpg" />
-    </figure>
+    <script>
+      const MIN = 10;
+      const MAX = 20;
+      const BODY = document.getElementsByTagName("body")[0];
+      for (let i = 0; i < 40; i++) {
+        const WIDTH = Math.floor(Math.random() * (MAX - MIN)) + MIN;
+        const HEIGHT = Math.floor(Math.random() * (MAX - MIN)) + MIN;
+        const FIGURE = document.createElement("figure");
+        FIGURE.setAttribute("data-proportions", `figure,${WIDTH}-${HEIGHT}`);
+        const IMAGE = document.createElement("img");
+        IMAGE.setAttribute("src", "./images/mountains.jpg");
+        FIGURE.appendChild(IMAGE);
+        BODY.appendChild(FIGURE);
+      }
+    </script>
     <script src="../dist/proportions.js"></script>
   </body>
 </html>

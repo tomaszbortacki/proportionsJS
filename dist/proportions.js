@@ -1,5 +1,5 @@
 const PROPORTIONS = document.querySelectorAll("[data-proportions]");
-let proportionTypes = [];
+const proportionTypes = [];
 if (PROPORTIONS.length > 0) {
   class Proportions {
     constructor(proportions) {
