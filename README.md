@@ -1,6 +1,6 @@
 # proportionsJS
 
-Scaling dynamically HTML block, images and whatsoever else
+Scaling dynamically height of HTML block, images and whatsoever else
 
 ## How to use
 
