@@ -38,6 +38,8 @@ if (PROPORTIONS.length > 0) {
     }
   }
 
+  const I_TYPES = [];
+
   const initProportions = () => {
     for (const el of PROPORTIONS) {
       const proportionEl = el.dataset.proportions;
@@ -46,9 +48,11 @@ if (PROPORTIONS.length > 0) {
     }
 
     for (let el of proportionTypes) {
-      el = new Proportions(el);
+      I_TYPES.push(new Proportions(el));
     }
+
+    console.log(I_TYPES);
   };
 
-  initProportions();
+  window.addEventListener("load", initProportions);
 }
